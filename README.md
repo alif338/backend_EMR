@@ -1,3 +1,8 @@
+# E-Medical Record API Services
+Medical Records adalah suatu basis pencatatan dan pengelolaan data historis pasien untuk pengambilan keputusan atas tindakan dan pengobatan bagi pasien. Basis pencatatan yang dimaksud dapat berupa fisik maupun elektronik, yang mana istilahnya saat ini disebut E-MR (Electronic Medical Records). Proyek E-MR API Services ini menyajikan sekumpulan Endpoint API yang memiliki fungsi-fungsi dasar pencatatan Rekam Medis dengan flow seperti pencatatan secara fisik.
+
+Kelebihan yang ditawarkan pada pencatatan elektronik ini salah satunya adalah dapat mengurangi biaya Maintenance Rekam Medis serta database pasien serta lifetime data pencatatan yang lebih panjang dibandingkan pencatatan fisik.
+
 # Rails on Replit
 
 This is a template to get you started with Rails on Replit. It's ready to go so you can just hit run and start coding!
