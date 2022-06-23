@@ -1,0 +1,2 @@
+class ServiceListsController < ApplicationController
+end

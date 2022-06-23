@@ -1,0 +1,2 @@
+class FinalDiagsController < ApplicationController
+end

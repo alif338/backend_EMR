@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  main_diag: MyString
+  complicate_diag: MyString
+  comorbid_diag: MyString
+
+two:
+  main_diag: MyString
+  complicate_diag: MyString
+  comorbid_diag: MyString

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  main_complaint: MyString
+  disease_hist_now: MyString
+  disease_hist_old: MyString
+  disease_hist_family: MyString
+
+two:
+  main_complaint: MyString
+  disease_hist_now: MyString
+  disease_hist_old: MyString
+  disease_hist_family: MyString

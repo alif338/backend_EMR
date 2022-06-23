@@ -1,0 +1,2 @@
+class PhysicsSupportCheck < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+module FinalDiagsHelper
+end

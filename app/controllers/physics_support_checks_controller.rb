@@ -1,0 +1,2 @@
+class PhysicsSupportChecksController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class ManagementPlan < ApplicationRecord
+end

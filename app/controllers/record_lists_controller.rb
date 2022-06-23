@@ -1,0 +1,2 @@
+class RecordListsController < ApplicationController
+end

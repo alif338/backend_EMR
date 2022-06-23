@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  therapy_plan: MyString
+  advanced_plan: MyString
+  educational_plan: MyString
+
+two:
+  therapy_plan: MyString
+  advanced_plan: MyString
+  educational_plan: MyString

@@ -1,0 +1,2 @@
+class RemedyAction < ApplicationRecord
+end
