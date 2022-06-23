@@ -1,2 +1,3 @@
 class RemedyAction < ApplicationRecord
+  belongs_to :record
 end
