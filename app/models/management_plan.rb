@@ -1,3 +1,3 @@
 class ManagementPlan < ApplicationRecord
-  belongs_to :record
+  belongs_to :record, optional: true
 end
