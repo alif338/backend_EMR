@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2022_06_23_020104) do
 
   create_table "anemnesas", force: :cascade do |t|
+    t.integer "record_id"
     t.text "main_complaint"
     t.text "disease_hist_now"
     t.text "disease_hist_past"
@@ -22,14 +23,15 @@ ActiveRecord::Schema.define(version: 2022_06_23_020104) do
   end
 
   create_table "diagnostics", force: :cascade do |t|
+    t.integer "record_id"
     t.text "work_diag"
     t.text "diff_diag"
-    t.integer "final_diag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "final_diags", force: :cascade do |t|
+    t.integer "diagnostic_id"
     t.text "main_diag"
     t.text "complicate_diag"
     t.text "comorbid_diag"
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(version: 2022_06_23_020104) do
   end
 
   create_table "management_plans", force: :cascade do |t|
+    t.integer "record_id"
     t.text "therapy_plan"
     t.text "advanced_plan"
     t.text "educational_plan"
@@ -60,6 +63,7 @@ ActiveRecord::Schema.define(version: 2022_06_23_020104) do
   end
 
   create_table "physics_support_checks", force: :cascade do |t|
+    t.integer "record_id"
     t.text "physics_check"
     t.text "support_check"
     t.datetime "created_at", precision: 6, null: false
@@ -75,16 +79,12 @@ ActiveRecord::Schema.define(version: 2022_06_23_020104) do
 
   create_table "records", force: :cascade do |t|
     t.string "date_time"
-    t.integer "anamnesa_id"
-    t.integer "physics_support_check_id"
-    t.integer "diagnostic_id"
-    t.integer "management_plan_id"
-    t.integer "remedy_action_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "remedy_actions", force: :cascade do |t|
+    t.integer "record_id"
     t.text "remedy"
     t.text "action"
     t.datetime "created_at", precision: 6, null: false

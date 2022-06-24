@@ -1,6 +1,7 @@
 class CreatePhysicsSupportChecks < ActiveRecord::Migration[7.0]
   def change
     create_table :physics_support_checks do |t|
+      t.integer :record_id
       t.text :physics_check
       t.text :support_check
 

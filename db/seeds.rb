@@ -19,7 +19,12 @@ patient = Patient.create!(
   payment_type: "payfazz"
 )
 
+record = Record.create(
+  date_time: Faker::Date.backward(days: 14),
+)
+
 anemnesa = Anemnesa.create!(
+  record_id: record.id,
   main_complaint: Faker::Lorem.sentence,
   disease_hist_now: Faker::Lorem.sentence(word_count: 6),
   disease_hist_past:Faker::Lorem.sentence(word_count: 6),
@@ -27,23 +32,26 @@ anemnesa = Anemnesa.create!(
 )
 
 physics_support_check = PhysicsSupportCheck.create!(
+  record_id: record.id,
   physics_check: Faker::Lorem.sentence,
   support_check: Faker::Lorem.sentence
 )
 
+diagnostic = Diagnostic.create!(
+  record_id: record.id,
+  work_diag: "Work Diagnosis",
+  diff_diag: "Differential Diagnosis",
+)
+
 final_diag = FinalDiag.create!(
+  diagnostic_id: diagnostic.id,
   main_diag: "Main Diagnosis",
   complicate_diag: "Complicated Diagnosis",
   comorbid_diag: "Comorbid Diagnosis",
 )
 
-diagnostic = Diagnostic.create!(
-  work_diag: "Work Diagnosis",
-  diff_diag: "Differential Diagnosis",
-  final_diag_id: final_diag.id,
-)
-
 remedy_action = RemedyAction.create!(
+  record_id: record.id,
   remedy: "Remedy",
   action: "Action",
 )
@@ -53,19 +61,12 @@ service = Service.create!(
 )
 
 management_plan = ManagementPlan.create!(
+  record_id: record.id,
   therapy_plan: "Therapy Plan",
   advanced_plan: "Advanced Plan",
   educational_plan: "Educational Plan",
 )
 
-record = Record.create(
-  date_time: Faker::Date.backward(days: 14),
-  anamnesa_id: anemnesa.id,
-  physics_support_check_id: physics_support_check.id,
-  diagnostic_id: diagnostic.id,
-  management_plan_id: management_plan.id,
-  remedy_action_id: remedy_action.id,
-)
 
 ServiceList.create(
   record_id: record.id,
