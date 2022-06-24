@@ -5,67 +5,74 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-Patient.create!(
-  name: "Fulan",
-  age: "30",
-  gender: "male",
-  no_reg: "12456",
-  religion: "Islam",
+require 'faker'
+
+patient = Patient.create!(
+  name: Faker::Name.name,
+  age: Faker::Number.number(digits: 2).to_s,
+  gender: Faker::Gender.binary_type,
+  no_reg: Faker::IDNumber.spanish_citizen_number,
+  religion: "NaN",
   education: "S1",
-  job_profession: "engineer",
+  job_profession: Faker::Job.title,
   person_responsible: "father",
   payment_type: "payfazz"
 )
 
-Anemnesa.create!(
-  main_complaint: "Main Complain",
-  disease_hist_now: "Disease History Now",
-  disease_hist_past: "Disease History Past",
-  disease_hist_family: "Family History",
+anemnesa = Anemnesa.create!(
+  main_complaint: Faker::Lorem.sentence,
+  disease_hist_now: Faker::Lorem.sentence(word_count: 6),
+  disease_hist_past:Faker::Lorem.sentence(word_count: 6),
+  disease_hist_family: Faker::Lorem.sentence(word_count: 6)
 )
 
-PhysicsSupportCheck.create!(
-  physics_check: "Physics Check",
-  support_check: "Support Check",
+physics_support_check = PhysicsSupportCheck.create!(
+  physics_check: Faker::Lorem.sentence,
+  support_check: Faker::Lorem.sentence
 )
 
-Diagnostic.create!(
-  work_diag: "Work Diagnosis",
-  diff_diag: "Differential Diagnosis",
-  final_diag_id: 1,
-)
-
-FinalDiag.create!(
+final_diag = FinalDiag.create!(
   main_diag: "Main Diagnosis",
   complicate_diag: "Complicated Diagnosis",
   comorbid_diag: "Comorbid Diagnosis",
 )
 
-RemedyAction.create!(
+diagnostic = Diagnostic.create!(
+  work_diag: "Work Diagnosis",
+  diff_diag: "Differential Diagnosis",
+  final_diag_id: final_diag.id,
+)
+
+remedy_action = RemedyAction.create!(
   remedy: "Remedy",
   action: "Action",
 )
 
-# ServiceList.create!(
-#   record_id: 1,
-#   service_id: 1
-# )
-
-Service.create!(
+service = Service.create!(
   service_name:  "Service Name",
 )
 
-ManagementPlan.create!(
+management_plan = ManagementPlan.create!(
   therapy_plan: "Therapy Plan",
   advanced_plan: "Advanced Plan",
   educational_plan: "Educational Plan",
 )
 
-# RecordList.create!(
-#   record_id: 1,
-#   patient_id: 1
-# )
+record = Record.create(
+  date_time: Faker::Date.backward(days: 14),
+  anamnesa_id: anemnesa.id,
+  physics_support_check_id: physics_support_check.id,
+  diagnostic_id: diagnostic.id,
+  management_plan_id: management_plan.id,
+  remedy_action_id: remedy_action.id,
+)
 
-Record.create(
-  
+ServiceList.create(
+  record_id: record.id,
+  service_id: service.id,
+)
+
+RecordList.create(
+  record_id: record.id,
+  patient_id: patient.id,
 )
