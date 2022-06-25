@@ -4,12 +4,12 @@ class CreatePatients < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :age
       t.string :gender
-      t.string :no_reg
       t.string :religion
       t.string :education
       t.string :job_profession
-      t.string :person_responsible
-      t.string :payment_type
+      t.string :alergical_hist
+      t.string :member_type
+      t.string :no_medical_record
 
       t.timestamps
     end

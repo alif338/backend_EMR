@@ -52,12 +52,12 @@ ActiveRecord::Schema.define(version: 2022_06_23_020104) do
     t.string "name"
     t.string "age"
     t.string "gender"
-    t.string "no_reg"
     t.string "religion"
     t.string "education"
     t.string "job_profession"
-    t.string "person_responsible"
-    t.string "payment_type"
+    t.string "alergical_hist"
+    t.string "member_type"
+    t.string "no_medical_record"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2022_06_23_020104) do
   end
 
   create_table "record_lists", force: :cascade do |t|
+    t.string "date_time"
     t.integer "patient_id"
     t.integer "record_id"
     t.datetime "created_at", precision: 6, null: false
@@ -78,7 +79,7 @@ ActiveRecord::Schema.define(version: 2022_06_23_020104) do
   end
 
   create_table "records", force: :cascade do |t|
-    t.string "date_time"
+    t.string "signature_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

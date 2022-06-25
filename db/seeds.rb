@@ -7,20 +7,21 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 
+# The patient faker may be comment out if you should generate patient new record only.
 patient = Patient.create!(
   name: Faker::Name.name,
   age: Faker::Number.number(digits: 2).to_s,
   gender: Faker::Gender.binary_type,
-  no_reg: Faker::IDNumber.spanish_citizen_number,
   religion: "NaN",
   education: "S1",
   job_profession: Faker::Job.title,
-  person_responsible: "father",
-  payment_type: "payfazz"
+  alergical_hist: Faker::Lorem.sentence,
+  member_type: "BPJS",
+  no_medical_record: Faker::IDNumber.spanish_citizen_number
 )
 
 record = Record.create(
-  date_time: Faker::Date.backward(days: 14),
+  signature_name: Faker::Name.name_with_middle,
 )
 
 anemnesa = Anemnesa.create!(
