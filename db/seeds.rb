@@ -20,7 +20,9 @@ patient = Patient.create!(
   no_medical_record: Faker::IDNumber.spanish_citizen_number
 )
 
-record = Record.create(
+record = Record.create!(
+  patient_id: patient.id,
+  date_time: Faker::Time.between(from: DateTime.now - 14, to: DateTime.now),
   signature_name: Faker::Name.name_with_middle,
 )
 
@@ -40,16 +42,17 @@ physics_support_check = PhysicsSupportCheck.create!(
 
 diagnostic = Diagnostic.create!(
   record_id: record.id,
-  work_diag: "Work Diagnosis",
-  diff_diag: "Differential Diagnosis",
-)
-
-final_diag = FinalDiag.create!(
-  diagnostic_id: diagnostic.id,
   main_diag: "Main Diagnosis",
   complicate_diag: "Complicated Diagnosis",
   comorbid_diag: "Comorbid Diagnosis",
 )
+
+# final_diag = FinalDiag.create!(
+#   diagnostic_id: diagnostic.id,
+#   main_diag: "Main Diagnosis",
+#   complicate_diag: "Complicated Diagnosis",
+#   comorbid_diag: "Comorbid Diagnosis",
+# )
 
 remedy_action = RemedyAction.create!(
   record_id: record.id,
@@ -74,7 +77,7 @@ ServiceList.create(
   service_id: service.id,
 )
 
-RecordList.create(
-  record_id: record.id,
-  patient_id: patient.id,
-)
+# RecordList.create(
+#   record_id: record.id,
+#   patient_id: patient.id,
+# )

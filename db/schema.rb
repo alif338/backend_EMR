@@ -24,14 +24,6 @@ ActiveRecord::Schema.define(version: 2022_06_23_020104) do
 
   create_table "diagnostics", force: :cascade do |t|
     t.integer "record_id"
-    t.text "work_diag"
-    t.text "diff_diag"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "final_diags", force: :cascade do |t|
-    t.integer "diagnostic_id"
     t.text "main_diag"
     t.text "complicate_diag"
     t.text "comorbid_diag"
@@ -70,15 +62,9 @@ ActiveRecord::Schema.define(version: 2022_06_23_020104) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "record_lists", force: :cascade do |t|
-    t.string "date_time"
-    t.integer "patient_id"
-    t.integer "record_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "records", force: :cascade do |t|
+    t.integer "patient_id"
+    t.string "date_time"
     t.string "signature_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

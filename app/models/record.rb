@@ -1,5 +1,5 @@
 class Record < ApplicationRecord
-  has_many :record_lists
+  belongs_to :patient
   has_one :anemnesa
   has_one :physics_support_check
   has_one :diagnostic
