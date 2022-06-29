@@ -1,5 +1,6 @@
 class Patient < ApplicationRecord
   has_many :records
+  has_many :medicine_receipt
   validates :name, presence: true, uniqueness: true
   validates :age, presence: true
   validates :gender, presence: true

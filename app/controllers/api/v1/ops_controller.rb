@@ -1,13 +1,19 @@
 class Api::V1::OpsController < ApplicationController
+  # TODO: initialize request middleware for authorization
 
-  def index
-    @ops = Record.all
+  def get_all_recorded_patients
+    @ops = Patient.all
     render json: @ops
   end
 
-  def show
-    @op = Record.find_by(name: params[:name])
+  def get_patient_by_id
+    @op = Patient.find_by(id: params[:id])
     render json: @op
+  end
+
+  def get_all_recorded_nurses
+    @ops = Doctor.all
+    render json: @ops
   end
 
   def register_patient

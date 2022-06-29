@@ -19,8 +19,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get '/patients', to: 'ops#index'
-      get '/patients/:name', to: 'ops#show'
+      get '/patients', to: 'ops#get_all_recorded_patients'
+      get '/patients/:id', to: 'ops#get_patient_by_id'
+      get '/nurses', to: 'ops#get_all_recorded_nurses'
       post '/patients', to: 'ops#register_patient'
     end
   end
