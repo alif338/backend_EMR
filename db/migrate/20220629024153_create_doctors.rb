@@ -3,6 +3,7 @@ class CreateDoctors < ActiveRecord::Migration[7.0]
     create_table :doctors do |t|
       t.string :name
       t.string :age
+      t.string :id_doctor
 
       t.timestamps
     end

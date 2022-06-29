@@ -12,11 +12,18 @@ require 'faker'
 for i in 1..5 do
   if Doctor.all.empty?
     Doctor.create!([
-      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s},
-      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s},
-      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s},
-      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s},
-      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s},
+      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s, id_doctor: Faker::IDNumber.spanish_citizen_number},
+      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s, id_doctor: Faker::IDNumber.spanish_citizen_number},
+      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s, id_doctor: Faker::IDNumber.spanish_citizen_number},
+      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s, id_doctor: Faker::IDNumber.spanish_citizen_number},
+      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s, id_doctor: Faker::IDNumber.spanish_citizen_number},
+    ])
+  end
+
+  if Operator.all.empty?
+    Operator.create!([
+      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s, id_operator: Faker::IDNumber.spanish_foreign_citizen_number},
+      {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s, id_operator: Faker::IDNumber.spanish_foreign_citizen_number}
     ])
   end
   

@@ -11,12 +11,12 @@ class Api::V1::OpsController < ApplicationController
     render json: @op
   end
 
-  def get_all_recorded_nurses
+  def get_all_nurses
     @ops = Doctor.all
     render json: @ops
   end
 
-  def register_patient
+  def register_new_patient
     @patient = Patient.new(patient_params)
     if @patient.save
       render json: @patient

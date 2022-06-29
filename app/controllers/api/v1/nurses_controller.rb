@@ -1,4 +1,8 @@
 class Api::V1::NursesController < ApplicationController
+  # TODO: initialize request middleware for authorization
+
+  def create_new_record
+  end
 
   def create_anemnesa
     record = Record.find_by(id: params[:record_id])
@@ -51,7 +55,7 @@ class Api::V1::NursesController < ApplicationController
   end
 
   def create_medicine_receipt
-    record = Record.find_by(id: params[:record_id])
+    patient = Patient.find_by(id: params[:patient_id])
     medicine_receipt = MedicineReceipt.new(medicine_receipt_params)
     if anemnesa.save
       render json: medicine_receipt
