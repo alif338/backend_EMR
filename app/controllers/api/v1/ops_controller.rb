@@ -5,8 +5,13 @@ class Api::V1::OpsController < ApplicationController
     render json: @ops
   end
 
-  def create_patient
-    @patient = Record.new(patient_params)
+  def show
+    @op = Record.find_by(name: params[:name])
+    render json: @op
+  end
+
+  def register_patient
+    @patient = Patient.new(patient_params)
     if @patient.save
       render json: @patient
     else
@@ -17,7 +22,7 @@ class Api::V1::OpsController < ApplicationController
   private
 
   def patient_params
-    params.require(:patient).permit
+    params.require(:patient).permit(:name, :age, :gender, :religion, :education, :job_profession, :alergical_hist, :member_type, :no_medical_record)
   end
     
 end

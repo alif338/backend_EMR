@@ -8,22 +8,48 @@
 require 'faker'
 
 # The patient faker may be comment out if you should generate patient new record only.
-patient = Patient.create!(
-  name: Faker::Name.name,
-  age: Faker::Number.number(digits: 2).to_s,
-  gender: Faker::Gender.binary_type,
-  religion: "NaN",
-  education: "S1",
-  job_profession: Faker::Job.title,
-  alergical_hist: Faker::Lorem.sentence,
-  member_type: "BPJS",
-  no_medical_record: Faker::IDNumber.spanish_citizen_number
-)
+if Doctor.all.empty?
+  Doctor.create!([
+    {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s},
+    {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s},
+    {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s},
+    {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s},
+    {name: Faker::Name.name,age: Faker::Number.number(digits: 2).to_s},
+  ])
+end
+
+if Patient.all.empty?
+  patients = Patient.create!([
+    {
+      name: Faker::Name.name,
+      age: Faker::Number.number(digits: 2).to_s,
+      gender: Faker::Gender.binary_type,
+      religion: "NaN",
+      education: "S1",
+      job_profession: Faker::Job.title,
+      alergical_hist: Faker::Lorem.sentence,
+      member_type: "BPJS",
+      no_medical_record: Faker::IDNumber.spanish_citizen_number
+    },{
+      name: Faker::Name.name,
+      age: Faker::Number.number(digits: 2).to_s,
+      gender: Faker::Gender.binary_type,
+      religion: "NaN",
+      education: "S1",
+      job_profession: Faker::Job.title,
+      alergical_hist: Faker::Lorem.sentence,
+      member_type: "BPJS",
+      no_medical_record: Faker::IDNumber.spanish_citizen_number
+    },
+  ])
+else
+  patients = Patient.all
+end
 
 record = Record.create!(
-  patient_id: patient.id,
+  patient_id: patients.sample.id,
   date_time: Faker::Time.between(from: DateTime.now - 14, to: DateTime.now),
-  signature_name: Faker::Name.name_with_middle,
+  signature_name: Doctor.all.sample.name,
 )
 
 anemnesa = Anemnesa.create!(
@@ -47,22 +73,26 @@ diagnostic = Diagnostic.create!(
   comorbid_diag: "Comorbid Diagnosis",
 )
 
-# final_diag = FinalDiag.create!(
-#   diagnostic_id: diagnostic.id,
-#   main_diag: "Main Diagnosis",
-#   complicate_diag: "Complicated Diagnosis",
-#   comorbid_diag: "Comorbid Diagnosis",
-# )
-
 remedy_action = RemedyAction.create!(
   record_id: record.id,
-  remedy: "Remedy",
-  action: "Action",
+  remedy: Faker::Lorem.sentence(word_count: 4),
+  action: Faker::Lorem.sentence(word_count: 6),
 )
 
-service = Service.create!(
-  service_name:  "Service Name",
-)
+if Service.all.empty?
+  Service.create!([
+    {service_name:  "Pelayanan Pemeriksaan Umum (Termasuk Surat Sehat)"},
+    {service_name:  "Pelayanan Pemeriksaan Gigi"},
+    {service_name:  "Pelayanan Gawat Darurat"},
+    {service_name:  "Pelayanan KIA (Kesehatan Ibu dan Anak)"},
+    {service_name:  "Pelayanan KB (Keluarga Berencana)"},
+    {service_name:  "Pelayanan Laboratorium"},
+    {service_name:  "Pelayanan Farmasi/Apotek (BPJS/Non BPJS)"},
+    {service_name:  "Pelayanan Inkubator Gratis"},
+    {service_name:  "Ambulance"},
+    {service_name:  "Home Visit"},
+  ])
+end
 
 management_plan = ManagementPlan.create!(
   record_id: record.id,
@@ -71,13 +101,7 @@ management_plan = ManagementPlan.create!(
   educational_plan: "Educational Plan",
 )
 
-
 ServiceList.create(
   record_id: record.id,
-  service_id: service.id,
+  service_id: Service.all.sample.id,
 )
-
-# RecordList.create(
-#   record_id: record.id,
-#   patient_id: patient.id,
-# )

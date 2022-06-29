@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :doctors
   # resources :management_plans
   # resources :services
   # resources :service_lists
@@ -18,7 +19,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get '/patients_all', to: 'ops#index'
+      get '/patients', to: 'ops#index'
+      get '/patients/:name', to: 'ops#show'
+      post '/patients', to: 'ops#register_patient'
     end
   end
 end
