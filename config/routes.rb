@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get '/records', to: 'ops#get_all_records'
       post '/patients', to: 'ops#register_new_patient'
 
+      post '/nurses/record', to: 'nurses#create_new_record'
       post '/nurses/anemnesa', to: 'nurses#create_anemnesa'
       post '/nurses/physics_support_check', to: 'nurses#create_physics_support_check'
       post '/nurses/diagnostic', to: 'nurses#create_diagnostic'

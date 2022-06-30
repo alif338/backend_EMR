@@ -2,6 +2,14 @@ class Api::V1::NursesController < ApplicationController
   # TODO: initialize request middleware for authorization
 
   def create_new_record
+    patient_id = Patient.find_by(id: params[:patient_id]).id
+    signature_name = Doctor.find_by(id: params[:doctor_id]).name
+    record = Record.new(patient_id: patient_id, signature_name: signature_name, date_time: params[:date_time])
+    if record.save
+      render json: record
+    else
+      render json: record.errors, status: :unprocessable_entity
+    end
   end
 
   def create_anemnesa
@@ -67,26 +75,26 @@ class Api::V1::NursesController < ApplicationController
   private
 
   def anemnesa_params
-    params.require(:anemnesa).permit(:record_id,:main_complaint, :disease_hist_now, :disease_hist_past, :disease_hist_family)
+    params.permit(:record_id,:main_complaint, :disease_hist_now, :disease_hist_past, :disease_hist_family)
   end
 
   def physics_support_check_params
-    params.require(:physics_support_check).permit(:record_id,:physics_check, :support_check)
+    params.permit(:record_id,:physics_check, :support_check)
   end
 
   def diagnostic_params
-    params.require(:diagnostic).permit(:record_id, :main_diag, :complicate_diag, :comorbid_diag)
+    params.permit(:record_id, :main_diag, :complicate_diag, :comorbid_diag)
   end
 
   def management_plan_params
-    params.require(:management_plan).permit(:record_id,:therapy_plan, :advanced_plan, :educational_plan)
+    params.permit(:record_id,:therapy_plan, :advanced_plan, :educational_plan)
   end
 
   def remedy_action_params
-    params.require(:remedy_action).permit(:record_id,:remedy, :action)
+    params.permit(:record_id,:remedy, :action)
   end
 
   def medicine_receipt_params
-    params.require(:medicine_receipt).permit(:patient_id, :date_time, :medicine_receipt, :written_by)
+    params.permit(:patient_id, :date_time, :medicine_receipt, :written_by)
   end
 end
