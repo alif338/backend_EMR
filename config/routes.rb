@@ -22,14 +22,15 @@ Rails.application.routes.draw do
       get '/patients', to: 'ops#get_all_recorded_patients'
       get '/patients/:id', to: 'ops#get_patient_by_id'
       get '/nurses', to: 'ops#get_all_nurses'
+      get '/records', to: 'ops#get_all_records'
       post '/patients', to: 'ops#register_new_patient'
 
-      post '/nurses/anemnesa/:record_id', to: 'nurses#create_anemnesa'
-      post '/nurses/physics_support_check/:record_id', to: 'nurses#create_physics_support_check'
-      post '/nurses/diagnostic/:record_id', to: 'nurses#create_diagnostic'
-      post '/nurses/management_plan/:record_id', to: 'nurses#create_management_plan'
-      post '/nurses/remedy_action/:record_id', to: 'nurses#create_remedy_action'
-      post '/nurses/medicine_receipt/:patient_id', to: 'nurses#create_medicine_receipt'
+      post '/nurses/anemnesa', to: 'nurses#create_anemnesa'
+      post '/nurses/physics_support_check', to: 'nurses#create_physics_support_check'
+      post '/nurses/diagnostic', to: 'nurses#create_diagnostic'
+      post '/nurses/management_plan', to: 'nurses#create_management_plan'
+      post '/nurses/remedy_action', to: 'nurses#create_remedy_action'
+      post '/nurses/medicine_receipt', to: 'nurses#create_medicine_receipt'
     end
   end
 end

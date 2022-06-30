@@ -6,6 +6,11 @@ class Api::V1::OpsController < ApplicationController
     render json: @ops
   end
 
+  def get_all_records
+    @ops = Record.all
+    render json: @ops
+  end
+
   def get_patient_by_id
     @op = Patient.find_by(id: params[:id])
     render json: @op

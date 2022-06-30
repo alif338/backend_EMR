@@ -47,7 +47,7 @@ class Api::V1::NursesController < ApplicationController
   def create_remedy_action
     record = Record.find_by(id: params[:record_id])
     remedy_action = RemedyAction.new(remedy_action_params)
-    if anemnesa.save
+    if remedy_action.save
       render json: remedy_action
     else
       render json: remedy_action.errors, status: :unprocessable_entity
@@ -57,7 +57,7 @@ class Api::V1::NursesController < ApplicationController
   def create_medicine_receipt
     patient = Patient.find_by(id: params[:patient_id])
     medicine_receipt = MedicineReceipt.new(medicine_receipt_params)
-    if anemnesa.save
+    if medicine_receipt.save
       render json: medicine_receipt
     else
       render json: medicine_receipt.errors, status: :unprocessable_entity
