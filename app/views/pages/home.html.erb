@@ -1,0 +1,15 @@
+<h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p>
+
+
+<% if current_user %>
+  <p>Hello <% current_user.email %>!</p>
+  <p>
+    You have successfully authenticated with your account.
+    You are now ready to access this application.
+  </p>
+<% else %>
+  <p>You are not signed in.</p>
+  <%= link_to "Sign up!", new_user_registration_path %>
+  <%= link_to "Login", new_user_session_path %>
+<% end %>
