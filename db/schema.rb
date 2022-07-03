@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2022_07_02_144253) do
   create_table "doctors", force: :cascade do |t|
     t.string "name"
     t.string "age"
+    t.string "id_doctor"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
