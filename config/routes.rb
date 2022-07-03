@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
   devise_for :users
-  resources :doctors
+  # resources :doctors
   # resources :management_plans
   # resources :services
   # resources :service_lists
@@ -18,8 +18,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  get '/*a', to: 'application#not_found'
-
+  
   namespace :api do
     namespace :v1 do
       get '/patients', to: 'ops#get_all_recorded_patients'
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
       get '/nurses', to: 'ops#get_all_nurses'
       get '/records', to: 'ops#get_all_records'
       post '/patients', to: 'ops#register_new_patient'
-
+      
       post '/nurses/record', to: 'nurses#create_new_record'
       post '/nurses/anemnesa', to: 'nurses#create_anemnesa'
       post '/nurses/physics_support_check', to: 'nurses#create_physics_support_check'
@@ -37,4 +36,5 @@ Rails.application.routes.draw do
       post '/nurses/medicine_receipt', to: 'nurses#create_medicine_receipt'
     end
   end
+  get '/*a', to: 'application#not_found'
 end
