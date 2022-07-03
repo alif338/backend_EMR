@@ -17,4 +17,18 @@ class OperatorTestTest < ActiveSupport::TestCase
     )
     assert operator.valid?
   end
+
+  test "should not be saved when all parameter is null" do
+    operator = Operator.new
+    assert_not operator.save
+  end
+
+  test "should be saved when all parameter not null" do
+    operator = Operator.new(
+      name: Faker::Name.name,
+      age: Faker::Number.number(digits: 2).to_s, 
+      id_operator: Faker::IDNumber.spanish_citizen_number
+    )
+    assert operator.save
+  end
 end

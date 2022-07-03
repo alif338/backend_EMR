@@ -17,4 +17,18 @@ class DoctorTestTest < ActiveSupport::TestCase
     )
     assert doctor.valid?
   end
+
+  test "should not be saved when all parameter is null" do
+    doctor = Doctor.new
+    assert_not doctor.save
+  end
+
+  test "should be saved when all parameter not null" do
+    doctor = Doctor.new(
+      name: Faker::Name.name,
+      age: Faker::Number.number(digits: 2).to_s, 
+      id_doctor: Faker::IDNumber.spanish_citizen_number
+    )
+    assert doctor.save
+  end
 end
